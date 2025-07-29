@@ -1,0 +1,1 @@
+ALTER TABLE "sessionChat" ALTER COLUMN "doctorId" SET DATA TYPE text;
