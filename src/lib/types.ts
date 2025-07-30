@@ -1,5 +1,10 @@
 import { doctors } from "@/server/db/schema";
 
+export type TMessages = {
+  role: string;
+  text: string;
+};
+
 export type ConversationItem = {
   role: "user" | "assistant";
   content: string;

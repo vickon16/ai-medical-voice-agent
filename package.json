@@ -15,17 +15,19 @@
     "db:push": "drizzle-kit push",
     "db:drop": "drizzle-kit drop",
     "db:studio": "drizzle-kit studio --host 127.0.0.1",
-    "db:seed": "ts-node --project tsconfig.json ./src/server/db/seed.ts",
-    "db:seed-js": "node ./scripts/seedDoctors.mjs"
+    "db:seed": "node ./scripts/seedDoctors.mjs"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
+    "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-slot": "^1.2.3",
     "@tabler/icons-react": "^3.34.0",
+    "@vapi-ai/web": "^2.3.8",
+    "ai": "^4.3.19",
     "assemblyai": "^4.14.0",
     "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
