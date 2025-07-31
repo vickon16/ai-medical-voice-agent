@@ -1,11 +1,11 @@
+import { suggestDoctors } from "@/lib/ai/functions/suggest-doctors";
 import { db } from "@/server/db";
 import { doctors } from "@/server/db/schema";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const notes = body.notes;
-  console.log({ notes });
+  const note = body.note;
   try {
     // Fetch all doctors from the database
     const allDoctors = await db.select().from(doctors);
@@ -18,11 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Shuffle the doctors array to randomize it
-    const shuffledDoctors = [...allDoctors].sort(() => Math.random() - 0.5);
-
-    // Take up to 5 doctors (or fewer if there aren't 5 available)
-    const suggestedDoctors = shuffledDoctors.slice(0, 5);
+    const suggestedDoctors = await suggestDoctors(note, allDoctors);
 
     return NextResponse.json({ doctors: suggestedDoctors }, { status: 200 });
   } catch (error) {

@@ -10,7 +10,6 @@ type Props = {
 const MedicalAgentSessionId = async (props: Props) => {
   const params = await props.params;
   const sessionDetails = await getSessionDetails(params.sessionId);
-  console.log("Session Details:", sessionDetails);
 
   if (!sessionDetails) {
     return (

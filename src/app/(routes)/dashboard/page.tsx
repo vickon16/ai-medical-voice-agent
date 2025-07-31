@@ -6,8 +6,6 @@ import DoctorsAgentList from "./_components/DoctorsAgentList";
 const DashboardPage = async () => {
   const session = await auth();
   if (!session) return <div>Not authenticated</div>;
-
-  console.log({ session });
   return (
     <div className="">
       <div className="flex justify-between items-center">

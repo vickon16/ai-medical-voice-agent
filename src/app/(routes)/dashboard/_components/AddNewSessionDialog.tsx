@@ -40,22 +40,27 @@ const AddNewSessionDialog = (props: Props) => {
   const [currentStep, setCurrentStep] = useState(Steps.NOTES);
 
   const onClickNext = async () => {
-    setLoading(true);
-    const result = await axios.post("/api/suggest-doctors", {
-      notes: note,
-    });
+    try {
+      setLoading(true);
+      const result = await axios.post("/api/suggest-doctors", {
+        note,
+      });
 
-    console.log(result.data);
-    if (result.status !== 200 || !result.data?.doctors) {
-      console.error("Failed to fetch doctors");
+      if (result.status !== 200 || !result.data?.doctors) {
+        console.error("Failed to fetch doctors");
+        setLoading(false);
+        setSuggestedDoctors([]);
+        return;
+      }
+
+      setCurrentStep(Steps.DOCTOR_SELECTION);
+      setSuggestedDoctors(result.data.doctors);
       setLoading(false);
-      setSuggestedDoctors([]);
-      return;
+    } catch (error) {
+      console.error("Error fetching doctors:", error);
+      setLoading(false);
+      toast.error("Failed to fetch doctors");
     }
-
-    setCurrentStep(Steps.DOCTOR_SELECTION);
-    setSuggestedDoctors(result.data.doctors);
-    setLoading(false);
   };
 
   const onStartConsultation = async () => {

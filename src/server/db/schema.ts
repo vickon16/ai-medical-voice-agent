@@ -12,7 +12,8 @@ import {
   json,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "@auth/core/adapters";
-import type { ConversationItem, Report } from "@/lib/types";
+import type { TMessages } from "@/lib/types";
+import { TGenerateReport } from "@/lib/ai/schema";
 
 // ---------------------------------------------------
 // Users Table
@@ -130,8 +131,8 @@ export const sessionsChat = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     notes: text("notes").notNull(),
-    conversation: json("conversation").$type<ConversationItem[]>().notNull(),
-    report: json("report").$type<Report>().notNull(),
+    conversation: json("conversation").$type<TMessages[]>().notNull(),
+    report: json("report").$type<TGenerateReport | null>(),
     doctorId: text("doctorId")
       .notNull()
       .references(() => doctors.id, { onDelete: "cascade" }),

@@ -1,23 +1,9 @@
 import { doctors } from "@/server/db/schema";
 
 export type TMessages = {
-  role: string;
-  text: string;
-};
-
-export type ConversationItem = {
-  role: "user" | "assistant";
+  type: "user" | "assistant" | "system";
   content: string;
-  timestamp: string; // or Date, depending on how you store it
-};
-
-export type Report = {
-  summary: string;
-  keywords: string[];
-  analysis: {
-    score: number;
-    notes: string;
-  };
+  time: string;
 };
 
 export type TDoctor = typeof doctors.$inferSelect;

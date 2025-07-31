@@ -1,0 +1,1 @@
+ALTER TABLE "sessionChat" ALTER COLUMN "report" DROP NOT NULL;

@@ -1,4 +1,4 @@
-CREATE TABLE "account" (
+CREATE TABLE IF NOT EXISTS "account" (
 	"userId" text NOT NULL,
 	"type" text NOT NULL,
 	"provider" text NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE "account" (
 	"session_state" text
 );
 --> statement-breakpoint
-CREATE TABLE "authenticator" (
+CREATE TABLE IF NOT EXISTS "authenticator" (
 	"credentialID" text NOT NULL,
 	"userId" text NOT NULL,
 	"providerAccountId" text NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE "authenticator" (
 	CONSTRAINT "authenticator_credentialID_unique" UNIQUE("credentialID")
 );
 --> statement-breakpoint
-CREATE TABLE "doctor" (
+CREATE TABLE IF NOT EXISTS "doctor" (
 	"id" text PRIMARY KEY NOT NULL,
 	"specialist" text NOT NULL,
 	"description" text NOT NULL,
@@ -35,13 +35,13 @@ CREATE TABLE "doctor" (
 	"createdAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "session" (
+CREATE TABLE IF NOT EXISTS "session" (
 	"sessionToken" text PRIMARY KEY NOT NULL,
 	"userId" text NOT NULL,
 	"expires" timestamp NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "sessionChat" (
+CREATE TABLE IF NOT EXISTS "sessionChat" (
 	"id" text PRIMARY KEY NOT NULL,
 	"sessionId" text NOT NULL,
 	"userId" text NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE "sessionChat" (
 	"createdAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "user" (
+CREATE TABLE IF NOT EXISTS "user" (
 	"id" text PRIMARY KEY NOT NULL,
 	"name" text,
 	"email" text,
@@ -65,7 +65,7 @@ CREATE TABLE "user" (
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
-CREATE TABLE "verificationToken" (
+CREATE TABLE IF NOT EXISTS "verificationToken" (
 	"identifier" text NOT NULL,
 	"token" text NOT NULL,
 	"expires" timestamp NOT NULL

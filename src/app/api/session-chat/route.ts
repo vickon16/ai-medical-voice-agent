@@ -51,14 +51,7 @@ export async function POST(request: NextRequest) {
         doctorId: selectedDoctorId,
         createdBy: userEmail,
         conversation: [], // Empty initial conversation
-        report: {
-          summary: "",
-          keywords: [],
-          analysis: {
-            score: 0,
-            notes: "",
-          },
-        },
+        report: null,
       })
       .returning();
 
